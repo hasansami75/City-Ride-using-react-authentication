@@ -1,0 +1,35 @@
+[
+    {
+        "id": 1,
+        "rideName": "BIKE",
+        "vehicleType": "bike",
+        "image": "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        "capacity" : 4,
+        "cost" : "$67"
+        
+    },
+    {
+        "id": 2,
+        "rideName": "CAR",
+        "vehicleType": "car",
+        "image": "https://www.focus2move.com/wp-content/uploads/2020/01/Tesla-Roadster-2020-1024-03.jpg",
+        "capacity" : 4,
+        "cost" : "$67"
+    },
+    {
+        "id": 3,
+        "rideName": "BUS",
+        "vehicleType": "bus",
+        "image": "https://assetsw.bus.com/content/uploads/2020/02/14170850/Charter-Bus-Rentals-Photo.jpg",
+        "capacity" : 4,
+        "cost" : "$67"
+    },
+    {
+        "id": 4,
+        "rideName": "TRAIN",
+        "vehicleType": "train",
+        "image": "https://images.unsplash.com/photo-1474487548417-781cb71495f3?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Nnx8dHJhaW58ZW58MHx8MHw%3D&ixlib=rb-1.2.1&w=1000&q=80",
+        "capacity" : 4,
+        "cost" : "$67"
+    }
+]
