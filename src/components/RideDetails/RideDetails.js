@@ -78,7 +78,7 @@ const RideDetails = () => {
                             </div>
                         </div>
                         <div className="col-md-6 mt-5">
-                            <img src={Map} alt="" />
+                            <img className="w-100" src={Map} alt="" />
                         </div>
                     </div>
                     ) :
@@ -107,7 +107,7 @@ const RideDetails = () => {
                                 }
                             </div>
                             <div className="col-md-6 mt-5">
-                                <img src={Map} alt="" />
+                                <img className="w-100" src={Map} alt="" />
                             </div>
                         </div>
                     )

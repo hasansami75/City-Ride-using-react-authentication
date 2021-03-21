@@ -147,9 +147,6 @@ const Login = () => {
                 <div class="mb-3">
                     <input type="password" name="password" placeholder="Password*" onBlur={handleBlur} class="form-control" id="pass" required/>
                 </div>
-                <div class="mb-3">
-                    <input type="password" name="re-password" placeholder="Re-Type Password*" onBlur={handleBlur} class="form-control" id="re-pass" required/>
-                </div>
                 <div class="mb-3 form-check">
                     <input type="checkbox" onChange={() => setNewUser(!newUser)} name="newUser" class="form-check-input" id="check"></input>
                     <label htmlFor="newUser" class="form-check-label" for="exampleCheck1"><b>New User? Click the checkbox for Sign Up!</b></label>
