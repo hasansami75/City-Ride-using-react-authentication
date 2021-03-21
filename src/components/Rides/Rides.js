@@ -6,7 +6,6 @@ import '../Rides/Rides.css';
 const Rides = (props) => {
     const [rideDetails, setRideDetails] = useContext(UserContext);
     const { rideName, image, vehicleType } = props.ride;
-    console.log(props);
     return (
         
         <div className="col-md-3 col-sm-12 m-top">
