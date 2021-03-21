@@ -3,12 +3,11 @@ import Header from '../Header/Header';
 import '../Login/Login.css';
 import firebase from "firebase/app";
 import "firebase/auth";
-import firebaseConfig from './firebase.config';
 import { useContext } from 'react';
 import { UserContext } from '../../App';
 import { useHistory, useLocation } from 'react-router';
 import { useState } from 'react';
-
+import firebaseConfig from './firebase.config';
 
 const Login = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
@@ -19,8 +18,7 @@ const Login = () => {
         email: '',
         password: '',
         error: '',
-        success: false,
-        signup: false
+        success: false
     })
     const history = useHistory();
     const location = useLocation();
@@ -64,6 +62,7 @@ const Login = () => {
                 var errorMessage = error.message;
                 var email = error.email;
                 var credential = error.credential;
+                console.log(error);
             });
     }
     const handleBlur = (e) => {
@@ -82,14 +81,6 @@ const Login = () => {
             setUser(newUserInfo);
         }
     }
-    // const validation = (e) = {
-    //     if(e.target.name === 'password' && e.target.name === 're-password'){
-    //         alert("Password Match");
-    //     }
-    //     else{
-    //         alert("Password do not match");
-    //     }
-    // }
     const handleSubmit = (e) => {
         if (newUser && user.password && user.email) {
             firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
@@ -99,6 +90,7 @@ const Login = () => {
                     newUserInfo.success = true;
                     setUser(newUserInfo);
                     updateUserName(user.name);
+                    history.push(from);
                 })
                 .catch((error) => {
                     const newUserInfo = { ...user };
@@ -115,6 +107,8 @@ const Login = () => {
                     newUserInfo.error = '';
                     newUserInfo.success = true;
                     setUser(newUserInfo);
+                    setLoggedInUser(newUserInfo);
+                    history.replace(from);
                     console.log('sign in userInfo', res.user);
                 })
                 .catch((error) => {
@@ -122,10 +116,12 @@ const Login = () => {
                     newUserInfo.error = error.message;
                     newUserInfo.success = false;
                     setUser(newUserInfo);
+                    console.log(error.message);
                 });
         }
 
         e.preventDefault();
+        
     }
 
     const updateUserName = name => {
@@ -141,21 +137,21 @@ const Login = () => {
     return (
         <div>
             <Header></Header>
-            <form action="handleSubmit" className="container mt-5">
+            <form className="container mt-5">
                 <div class="mb-3">
-                    {newUser && <input type="name" name="username" placeholder="Full Name*" onBlur={handleBlur} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required></input>}
+                    {newUser && <input type="name" name="username" placeholder="Full Name*" onBlur={handleBlur} class="form-control" id="user" aria-describedby="emailHelp" required/>}
                 </div>
                 <div class="mb-3">
-                    <input type="email" name="email" placeholder="Email address*" onBlur={handleBlur} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required></input>
+                    <input type="email" name="email" placeholder="Email address*" onBlur={handleBlur} class="form-control" id="email" aria-describedby="emailHelp" required/>
                 </div>
                 <div class="mb-3">
-                    <input type="password" name="password" placeholder="Password*" onBlur={handleBlur} class="form-control" id="exampleInputPassword1" required></input>
+                    <input type="password" name="password" placeholder="Password*" onBlur={handleBlur} class="form-control" id="pass" required/>
                 </div>
                 <div class="mb-3">
-                    <input type="password" name="re-password" placeholder="Re-Type Password*" onBlur={handleBlur} class="form-control" id="exampleInputPassword1" required></input>
+                    <input type="password" name="re-password" placeholder="Re-Type Password*" onBlur={handleBlur} class="form-control" id="re-pass" required/>
                 </div>
                 <div class="mb-3 form-check">
-                    <input type="checkbox" onChange={() => setNewUser(!newUser)} name="newUser" class="form-check-input" id="exampleCheck1"></input>
+                    <input type="checkbox" onChange={() => setNewUser(!newUser)} name="newUser" class="form-check-input" id="check"></input>
                     <label htmlFor="newUser" class="form-check-label" for="exampleCheck1"><b>New User? Click the checkbox for Sign Up!</b></label>
                 </div>
                 <button onClick={handleSubmit} type="submit" value="submit" class="btn btn-primary">Submit</button>

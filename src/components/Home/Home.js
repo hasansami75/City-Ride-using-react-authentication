@@ -1,5 +1,4 @@
 import React from 'react';
-import '../Home/Home.css';
 import fakeData from '../../Data/Data.json';
 import Rides from '../Rides/Rides';
 import { useState } from 'react';

@@ -4,8 +4,9 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
+import firebase from "firebase/app";
+import "firebase/auth";
 import Home from './components/Home/Home';
 import Header from './components/Header/Header';
 import Login from './components/Login/Login';
@@ -14,19 +15,21 @@ import RideDetails from './components/RideDetails/RideDetails';
 import { createContext } from 'react';
 import { useState } from 'react';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
-import RideCost from './components/RideCost/RideCost';
+import firebaseConfig from './components/Login/firebase.config';
+import NoMatch from './components/NoMatch/NoMatch';
 
 export const UserContext = createContext();
-
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
   return (
     <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
-      <p>Name: {loggedInUser.name}</p>
       <Router>
         <Switch>
           <Route path="/home">
-            <div className="bg-image">
+            <div className="bg-color">
               <Header />
               <Home />
             </div>
@@ -40,14 +43,26 @@ function App() {
           <Route path="/destination">
             <Destination></Destination>
           </Route>
-          <Route path="/rideCost">
-              <RideCost></RideCost>
-          </Route>
-          <Route exact path="/">
-            <div className="bg-image">
+          <Route path="/blog">
+            <div className="bg-color">
               <Header />
               <Home />
             </div>
+          </Route>
+          <Route path="/contact">
+            <div className="bg-color">
+              <Header />
+              <Home />
+            </div>
+          </Route>
+          <Route exact path="/">
+            <div className="bg-color">
+              <Header />
+              <Home />
+            </div>
+          </Route>
+          <Route path="*">
+            <NoMatch />
           </Route>
         </Switch>
       </Router>
